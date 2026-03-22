@@ -12,14 +12,23 @@ on:
 jobs:
 
   terraform-plan:
-    name: Terraform Init & Plan
+    name: Terraform Plan (Feature Branch)
     runs-on: ubuntu-latest
 
     if: github.ref != 'refs/heads/main'
 
+    defaults:
+      run:
+        working-directory: Environment/dev   # 👈 YOUR TERRAFORM PATH
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -37,18 +46,27 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: tfplan
-          path: tfplan
+          path: Environment/dev/tfplan
 
 
   terraform-apply:
-    name: Terraform Apply (Main Only)
+    name: Terraform Apply (Main Branch)
     runs-on: ubuntu-latest
 
     if: github.ref == 'refs/heads/main'
 
+    defaults:
+      run:
+        working-directory: Environment/dev   # 👈 SAME PATH
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -58,4 +76,3 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-
