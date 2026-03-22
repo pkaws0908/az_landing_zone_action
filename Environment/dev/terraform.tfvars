@@ -218,3 +218,15 @@ module_lb = {
 
   }
 }
+
+module_vmss = {
+
+  vmss1 = {
+    name = "appvmss"
+    location = "Central India"
+    rg_name  = "pk_rg"
+    subnet_name = "frontendsubnet"
+    vnet_name = "infravnet"
+
+  }
+}
