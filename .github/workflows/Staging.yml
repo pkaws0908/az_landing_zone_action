@@ -6,7 +6,6 @@ permissions:
   contents: read
 jobs:
   terraform-job:
-    environment: dev
     runs-on: pkdg
     steps:
     - name: Checkout
@@ -21,9 +20,7 @@ jobs:
       uses: Azure/login@v3
       with:
         client-id: ba98cacc-0d74-4756-9101-cc3eda001026
-        # TenantId of the Azure Service principal created.
         tenant-id: 01243cc1-e80d-488d-9e34-c0c5f65a9974
-        # Azure subscriptionId
         subscription-id: b45fb524-5427-4292-b739-56b83ea60765
 
     - name: Terraform fmt
