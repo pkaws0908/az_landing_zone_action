@@ -218,10 +218,6 @@ module_lb = {
 
   }
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 2d9d70cc9d701d282b217a507a64cc692c5166c5
 module_vmss = {
 
   vmss1 = {
