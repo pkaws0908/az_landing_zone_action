@@ -7,11 +7,12 @@ terraform {
   }
 
   backend "azurerm" {
+ tenant_id = "01243cc1-e80d-488d-9e34-c0c5f65a9974"
     use_cli              = true
     storage_account_name = "stgaccount1290"
     container_name       = "tfstate"
     key                  = "dev.terraform.tfstate"
-    # resource_group_name = "your-rg-name" # add if required
+    resource_group_name = "Dev-RG"
   }
 }
 
