@@ -5,7 +5,7 @@ permissions:
   id-token: write
   contents: read
 jobs:
-  terraform-job:
+  terraform-init-plan:
     runs-on: pkdg
     steps:
     - name: Checkout
@@ -47,6 +47,23 @@ jobs:
       run: terraform plan -no-color -input=false
       continue-on-error: true
       working-directory: Environment/dev
+
+  terraform-init-apply:        
+    environment: dev 
+    runs-on: pkdg
+    needs: terraform-init-plan
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
+      - name: Terraform Init
+        id: init 
+        run: terraform init 
+        working-directory: Environment/dev
         
+      - name: terraform Apply
+        id: init 
+        run: terraform apply --auto-approve
+        working-directory: Environment/dev  
       
     
