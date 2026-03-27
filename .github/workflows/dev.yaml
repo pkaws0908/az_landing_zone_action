@@ -40,14 +40,12 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan -out=tfplan.txt
-
+        run: terraform plan -out=tfplan
       - name: Upload Plan Artifact
         uses: actions/upload-artifact@v4
         with:
           name: tfplan
-          path: Environment/dev/tfplan.txt
-
+          path: Environment/dev/tfplan
 
   terraform-apply:
     name: Terraform Apply (Main Branch)
