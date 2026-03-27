@@ -62,7 +62,7 @@ jobs:
         working-directory: Environment/dev
         
       - name: terraform Apply
-        id: init 
+        id: apply
         run: terraform apply --auto-approve
         working-directory: Environment/dev  
       
