@@ -2,16 +2,16 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "4.42.0"
+      version = "~> 4.42"
     }
   }
+
   backend "azurerm" {
-    use_cli              = true                                   
-    use_azuread_auth     = true                                   
-    tenant_id            = "01243cc1-e80d-488d-9e34-c0c5f65a9974" 
-    storage_account_name = "stgaccount1290"                              
-    container_name       = "tfstate"                              
-    key                  = "dev.terraform.tfstate"               
+    use_cli              = true
+    storage_account_name = "stgaccount1290"
+    container_name       = "tfstate"
+    key                  = "dev.terraform.tfstate"
+    # resource_group_name = "your-rg-name" # add if required
   }
 }
 
@@ -22,6 +22,6 @@ provider "azurerm" {
       recover_soft_deleted_key_vaults = true
     }
   }
-  subscription_id = "b45fb524-5427-4292-b739-56b83ea60765"
 
+  subscription_id = "b45fb524-5427-4292-b739-56b83ea60765"
 }
