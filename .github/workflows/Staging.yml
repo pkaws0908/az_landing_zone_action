@@ -22,18 +22,19 @@ jobs:
         client-id: ba98cacc-0d74-4756-9101-cc3eda001026
         tenant-id: 01243cc1-e80d-488d-9e34-c0c5f65a9974
         subscription-id: b45fb524-5427-4292-b739-56b83ea60765
-
-    - name: Terraform fmt
-      id: fmt
-      run: terraform fmt -check
-      continue-on-error: true
-      working-directory: Environment/dev
+ 
       
     - name: Terraform init
       id: init
       run: terraform init
       continue-on-error: true
       working-directory: Environment/dev
+      
+    - name: Terraform fmt
+      id: fmt
+      run: terraform fmt -check
+      continue-on-error: true
+      working-directory: Environment/dev    
     
     - name: Terraform validate
       id: validate
